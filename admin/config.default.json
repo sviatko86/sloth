@@ -1,0 +1,808 @@
+{
+  "theme": {
+    "bg": "#0E0F1A",
+    "surface": "#171828",
+    "border": "#2B2C45",
+    "text": "#F4F2FF",
+    "muted": "#A9A6C4",
+    "accent": "#FF8A4C",
+    "accentInk": "#2A1206",
+    "lilac": "#B9A8FF",
+    "green": "#7EE2A8"
+  },
+  "defaultLanguage": "uk",
+  "game": {
+    "xpByRung": [
+      30,
+      20,
+      10,
+      5
+    ],
+    "xpPerLevel": 60,
+    "comboFrom": 2,
+    "comboMultiplier": 2,
+    "surpriseChance": 0.65,
+    "surpriseXp": 10,
+    "proofXp": 10,
+    "charityPerStep": 2
+  },
+  "boss": {
+    "hp": 100,
+    "winXp": 100,
+    "dmgBonus": 10
+  },
+  "items": [
+    {
+      "id": "glasses"
+    },
+    {
+      "id": "phones"
+    },
+    {
+      "id": "hammock"
+    },
+    {
+      "id": "cup"
+    },
+    {
+      "id": "lights"
+    },
+    {
+      "id": "pillow"
+    }
+  ],
+  "shop": [
+    {
+      "id": "coffee",
+      "cost": 150
+    },
+    {
+      "id": "gym",
+      "cost": 400
+    },
+    {
+      "id": "skin",
+      "cost": 250
+    }
+  ],
+  "club": {
+    "minutes": 10,
+    "rewardXp": 40
+  },
+  "stake": {
+    "amounts": [
+      50,
+      100,
+      200,
+      500
+    ]
+  },
+  "features": {
+    "wake": {
+      "enabled": true,
+      "default": true
+    },
+    "tts": {
+      "enabled": true,
+      "default": true
+    },
+    "voice": {
+      "enabled": true,
+      "default": true
+    },
+    "future": {
+      "enabled": true,
+      "default": true
+    },
+    "chain": {
+      "enabled": true,
+      "default": true
+    },
+    "panic": {
+      "enabled": true,
+      "default": true
+    },
+    "radar": {
+      "enabled": true,
+      "default": false
+    },
+    "proof": {
+      "enabled": true,
+      "default": true
+    },
+    "boss": {
+      "enabled": true,
+      "default": true
+    },
+    "surprise": {
+      "enabled": true,
+      "default": true
+    },
+    "club": {
+      "enabled": true,
+      "default": true
+    },
+    "series": {
+      "enabled": true,
+      "default": true
+    },
+    "home": {
+      "enabled": true,
+      "default": false
+    },
+    "charity": {
+      "enabled": true,
+      "default": true
+    },
+    "shop": {
+      "enabled": true,
+      "default": true
+    },
+    "stake": {
+      "enabled": true,
+      "default": false
+    }
+  },
+  "languages": {
+    "uk": {
+      "name": "Українська",
+      "voiceLang": "uk-UA",
+      "tabs": {
+        "morning": "Ранок",
+        "pet": "Лінивець",
+        "club": "Клуб",
+        "series": "Серіал",
+        "more": "Функції"
+      },
+      "texts": {
+        "appName": "Sloth",
+        "tagline": "Торгуємось з ліню",
+        "helloNormal": "Доброго ранку! Перший крок дня: «{task}». Як тобі?",
+        "helloTired": "Бачу, сьогодні важко. Почнемо з мінімуму: «{task}». Згода?",
+        "noLines": [
+          "Без проблем, домовимось. А так: «{task}»?",
+          "Розумію. Ще менше: «{task}». Ну?",
+          "Останній варіант, чесно: «{task}». Це майже нічого."
+        ],
+        "restLine": "Добре, сьогодні відпочиваємо. Серію заморожено, вона не згорить. Завтра почнемо з 1 хвилини.",
+        "panicLine": "Режим паніки. 10 секунд: «{task}». І все, чесно.",
+        "homeLine": "Вмикаю світло в спальні й улюблену музику. Так легше.",
+        "yesLine": "Є! +{xp} XP. Лінь отримала −{dmg} HP.",
+        "comboSuffix": " (комбо ×2)",
+        "surpriseItem": "Сюрприз! Подарунок для Лінивця: «{item}».",
+        "surpriseXp": "Сюрприз: бонус +10 XP.",
+        "bossWin": "Бос «{boss}» переможений! +{xp} XP.",
+        "charityLine": "+{n} ₴ від партнерів на благодійність.",
+        "askMore": "Ще один маленький крок?",
+        "nextLine": "Наступне: «{task}». Підходить?",
+        "doneAll": "На сьогодні все. Ти зробив більше, ніж планував. Увечері — нова серія.",
+        "enoughLine": "Чудово. Відпочивай. Увечері покажу нову серію.",
+        "proofLine": "AI перевірив фото: все чесно. +10 XP.",
+        "notHeard": "Не розчув. Скажи «так», «ні, ліньки» або «досить».",
+        "snoozeLine": "Домовились, 5 хвилин. Потім просто скажи «так».",
+        "wakeHint": "Очі можна не відкривати. Просто скажи.",
+        "futureLabel": "ГОЛОС ІЗ МАЙБУТНЬОГО · ТВІЙ ГОЛОС",
+        "wakeFuture": "Привіт, це ти через рік. Перший крок — {task}. Скажи «так» або «ліньки».",
+        "wakeNormal": "Доброго ранку! Перший крок — {task}. Так чи ліньки?",
+        "wakePlan": "Вчора ти сказав: «Завтра я {plan}». А почнемо з простого: {task}. Так?",
+        "letterZero": "Привіт. Я знаю, сьогодні було ліньки, і це нормально.\nВсе почалось з одного ковтка води.\nЗавтра просто зроби одну маленьку річ.",
+        "letterDone": "Привіт. Сьогодні ти зробив {n} кроків, хоча хотілося лежати.\nСаме з таких днів я і складаюсь. Дякую.",
+        "episodeZeroTitle": "Перерва між битвами",
+        "episodeZeroText": "Сьогодні герой відпочивав. Але найкращі сезони починаються з паузи. Завтра — новий епізод.",
+        "episodeTitle": "Маленькі кроки",
+        "episodeWinTitle": "Герой проти Ліні",
+        "episodeText": "Герой торгувався з ліню {no} раз(и), і зрештою {n} кроків змінили день.",
+        "kickText": "Давай, я теж щойно встав. Разом простіше.",
+        "duelFriend": "Максим",
+        "duelRule": "Хто програє, той на день отримує смішне фото профілю від суперника.",
+        "stakePromise": "Завтра встаю о 7:30 і роблю 1 крок",
+        "arText": "Наведи камеру на ліжко, і Лінивець з’явиться на ковдрі.",
+        "season": "СЕЗОН 1"
+      },
+      "ui": {
+        "moods": [
+          "Бадьорий",
+          "Нормально",
+          "Зомбі"
+        ],
+        "sleeps": [
+          "9 год",
+          "7 год",
+          "5 год"
+        ],
+        "bossOfDay": "Бос дня",
+        "combo": "Комбо",
+        "defeated": "Переможено!",
+        "radarLabel": "Радар ліні · скільки ти спав",
+        "radarToast": "Радар ліні: легкий режим",
+        "chain": "Ланцюжок: {after} → цей крок",
+        "no": "Ні, ліньки",
+        "yes": "Ок, роблю",
+        "panic": "Мені ДУЖЕ ліньки (10 секунд)",
+        "panicSaid": "Мені ДУЖЕ ліньки",
+        "proof": "Фото-доказ для AI (+{xp} XP)",
+        "photo": "[фото]",
+        "enough": "Досить",
+        "enoughSaid": "Досить на сьогодні",
+        "more": "Ще крок",
+        "moreSaid": "Давай ще",
+        "restart": "Почати ранок заново",
+        "snoozeSaid": "Ще 5 хвилин",
+        "fallbackStep": "Один маленький крок",
+        "yourPet": "Твій компаньйон",
+        "mood": "Настрій",
+        "petMoods": [
+          "сонний",
+          "задоволений",
+          "щасливий"
+        ],
+        "found": "знайдено {a} з {b}",
+        "ar": "Побачити в кімнаті (AR)",
+        "collection": "Колекція. Подарунки випадають після кроків",
+        "locked": "Закрито",
+        "widget": "Віджет на екрані блокування",
+        "widgetDone": "Крок зроблено. Ще один?",
+        "widgetRest": "На сьогодні все",
+        "done": "Зроблено",
+        "doneFromWidget": "Зроблено (з віджета)",
+        "widgetToast": "Зараховано з екрана блокування",
+        "noStep": "Немає активного кроку",
+        "clubTitle": "Лінивий клуб",
+        "roomNow": "Тиха кімната · зараз {n}",
+        "leaveRoom": "Вийти з кімнати",
+        "joinRoom": "Сісти поруч на {n} хвилин",
+        "roomReward": "{n} хвилин разом! +{xp} XP",
+        "me": "Я",
+        "you": "Ти",
+        "duelTitle": "Лінива дуель · хто перший зробить 3 кроки",
+        "duelWin": "Ти переміг! {friend} на день отримує смішне фото профілю від тебе.",
+        "sendKick": "Надіслати пинок: {friend}",
+        "kickSent": "Пинок надіслано",
+        "strangerKick": "ПИНОК ВІД НЕЗНАЙОМЦЯ",
+        "listenVoice": "Прослухати голосове",
+        "episodeBadge": "СЕРІЯ ДНЯ",
+        "listen": "Слухати",
+        "share": "Поділитися",
+        "steps": "кроків",
+        "trades": "торгів",
+        "forGood": "на добро",
+        "letterLabel": "ЛИСТ ВІД ТЕБЕ ЧЕРЕЗ РІК",
+        "readAloud": "Прочитати вголос",
+        "tomorrow": "Завтра я…",
+        "tomorrowHint": "Одне речення перед сном. Вранці {app} нагадає його твоїми словами.",
+        "tomorrowPlaceholder": "вийду на 10 хвилин прогулянки",
+        "save": "Зберегти",
+        "writeOne": "Напиши одне речення",
+        "saved": "Збережено: «{plan}»",
+        "planSaved": "Вранці нагадаю твоїми словами",
+        "featuresTitle": "Функції",
+        "featuresHint": "Кожну функцію можна увімкнути або вимкнути.",
+        "language": "Мова",
+        "stakeLabel": "Ставка: «{promise}»",
+        "stakeTarget": "Не виконаю — гроші йдуть:",
+        "stakePlace": "Закласти {n} ₴",
+        "stakePlaced": "Ставку прийнято · {n} ₴",
+        "stakeToast": "Ставку прийнято",
+        "stakeNote": "[Справжні платежі підключимо пізніше, після юридичної перевірки.]",
+        "shopTitle": "Обміняти XP на бонуси партнерів · у тебе {xp} XP",
+        "received": " · отримано",
+        "exchange": "Обміняти",
+        "bought": "Обміняно: {name}",
+        "contentFrom": "Контент: {src}",
+        "srcServer": "з адмінки",
+        "srcCache": "збережений",
+        "srcDefault": "стандартний",
+        "wakeTitle": "ПРОБУДЖЕННЯ",
+        "skip": "Пропустити",
+        "speak": "Говорити",
+        "wakeYes": "«Так»",
+        "wakeNo": "«Ліньки»",
+        "wakeSnooze": "«Ще 5 хв»",
+        "listening": "Слухаю…",
+        "heard": "Почув: «{t}»",
+        "plan": "План: {plan}",
+        "wakeScreen": "Екран пробудження",
+        "level": "Рівень",
+        "voiceControl": "Голосове керування",
+        "close": "Закрити",
+        "voiceTitle": "Голосові команди",
+        "voiceRetry": "Не вдалося почути. Дозволь мікрофон або торкнись фрази.",
+        "voiceNoStt": "У цій версії мікрофон недоступний (потрібна власна збірка). Торкнись фрази — це те саме, що сказати її.",
+        "arTitle": "AR-режим",
+        "arSoon": "[Підключимо в наступній версії.]"
+      },
+      "tasks": [
+        {
+          "after": "одразу після будильника",
+          "ladder": [
+            "Випий склянку води",
+            "Пів склянки води",
+            "Хоча б один ковток води"
+          ]
+        },
+        {
+          "after": "після води",
+          "ladder": [
+            "Зарядка 20 хвилин",
+            "Зарядка 5 хвилин",
+            "10 присідань",
+            "Потягнись 2 рази, не встаючи з ліжка"
+          ]
+        },
+        {
+          "after": "після ранкової кави",
+          "ladder": [
+            "Розібрати пошту 15 хвилин",
+            "Відповісти на 1 лист",
+            "Просто відкрити пошту і подивитись"
+          ]
+        }
+      ],
+      "bossName": "Лінь",
+      "items": {
+        "glasses": "Окуляри",
+        "phones": "Навушники",
+        "hammock": "Гамак",
+        "cup": "Какао",
+        "lights": "Гірлянда",
+        "pillow": "Подушка"
+      },
+      "shop": {
+        "coffee": {
+          "name": "Кава −20%",
+          "partner": "[кав’ярня-партнер]"
+        },
+        "gym": {
+          "name": "Тренування в залі",
+          "partner": "[спортзал-партнер]"
+        },
+        "skin": {
+          "name": "Рідкісний костюм Лінивця",
+          "partner": "Лінивець"
+        }
+      },
+      "clubPeople": [
+        {
+          "initials": "ОК",
+          "doing": "Оля прибирає"
+        },
+        {
+          "initials": "МТ",
+          "doing": "Максим пише диплом"
+        },
+        {
+          "initials": "АН",
+          "doing": "Андрій розбирає пошту"
+        },
+        {
+          "initials": "ДС",
+          "doing": "Дана робить зарядку"
+        }
+      ],
+      "stakeTargets": [
+        "Другу, який з мене посміється",
+        "На благодійність",
+        "У скарбничку на місяць"
+      ],
+      "features": {
+        "wake": {
+          "title": "Голосове пробудження",
+          "desc": "Застосунок стартує з голосового будильника"
+        },
+        "tts": {
+          "title": "Голос бота",
+          "desc": "Лінивець озвучує відповіді"
+        },
+        "voice": {
+          "title": "Голосове керування",
+          "desc": "Кнопка мікрофона на всіх екранах"
+        },
+        "future": {
+          "title": "Голос із майбутнього",
+          "desc": "Бот говорить від імені тебе через рік"
+        },
+        "chain": {
+          "title": "Ланцюжки звичок",
+          "desc": "Новий крок прив’язується до того, що ти вже робиш"
+        },
+        "panic": {
+          "title": "Кнопка паніки",
+          "desc": "Найменший крок на 10 секунд"
+        },
+        "radar": {
+          "title": "Радар ліні",
+          "desc": "Після поганої ночі легкий режим"
+        },
+        "proof": {
+          "title": "Фото-доказ з AI",
+          "desc": "Сфоткай результат і отримай бонус"
+        },
+        "boss": {
+          "title": "Бос дня",
+          "desc": "Кожен крок б’є Лінь"
+        },
+        "surprise": {
+          "title": "Сюрпризи",
+          "desc": "Подарунки після кроків"
+        },
+        "club": {
+          "title": "Лінивий клуб",
+          "desc": "Тиха кімната, дуель, пинки"
+        },
+        "series": {
+          "title": "Серіал дня",
+          "desc": "Твій день як серія"
+        },
+        "home": {
+          "title": "Розумний дім",
+          "desc": "Сказав «ліньки» — вмикаю світло і музику"
+        },
+        "charity": {
+          "title": "Кроки на добро",
+          "desc": "Кожен крок — гривні на благодійність"
+        },
+        "shop": {
+          "title": "Магазин XP",
+          "desc": "Обмін XP на бонуси партнерів"
+        },
+        "stake": {
+          "title": "Ставка на себе",
+          "desc": "Гроші на кону, якщо не виконаєш обіцянку"
+        }
+      },
+      "commands": {
+        "club": "клуб|кімнат|дуел",
+        "join": "сісти|поруч|старт",
+        "pet": "лінивц|тваринк|колекц|подарун|компаньйон",
+        "series": "серіал|серія|вечір|підсум|лист",
+        "more": "налашт|функц|магазин|мова",
+        "proof": "фото|доказ",
+        "enough": "досить|вистачить|на сьогодні все",
+        "panic": "дуже|паніка|зовсім",
+        "no": "(^|\\s)ні(\\s|,|$)|ліньк|не хочу|менше|потім",
+        "yes": "ще|далі|наступ|так|ок|окей|роблю|давай|згод|добре|погнали"
+      },
+      "phrases": [
+        "так",
+        "ні, ліньки",
+        "дуже ліньки",
+        "давай ще",
+        "досить",
+        "фото",
+        "клуб",
+        "серіал",
+        "лінивець"
+      ]
+    },
+    "en": {
+      "name": "English",
+      "voiceLang": "en-US",
+      "tabs": {
+        "morning": "Morning",
+        "pet": "Sloth",
+        "club": "Club",
+        "series": "Episode",
+        "more": "Features"
+      },
+      "texts": {
+        "appName": "Sloth",
+        "tagline": "Bargaining with laziness",
+        "helloNormal": "Good morning! First step of the day: “{task}”. How about it?",
+        "helloTired": "Looks like a tough day. Let's start with the bare minimum: “{task}”. Deal?",
+        "noLines": [
+          "No problem, let's negotiate. How about: “{task}”?",
+          "Got it. Even smaller: “{task}”. Well?",
+          "Last offer, honestly: “{task}”. That's almost nothing."
+        ],
+        "restLine": "Okay, today we rest. Your streak is frozen, it won't burn. Tomorrow we start with 1 minute.",
+        "panicLine": "Panic mode. 10 seconds: “{task}”. That's it, promise.",
+        "homeLine": "Turning on the bedroom lights and your favorite music. Easier this way.",
+        "yesLine": "Yes! +{xp} XP. Laziness took −{dmg} HP.",
+        "comboSuffix": " (combo ×2)",
+        "surpriseItem": "Surprise! A gift for your Sloth: “{item}”.",
+        "surpriseXp": "Surprise: +10 XP bonus.",
+        "bossWin": "Boss “{boss}” defeated! +{xp} XP.",
+        "charityLine": "+{n} ₴ from partners to charity.",
+        "askMore": "One more tiny step?",
+        "nextLine": "Next: “{task}”. Sound good?",
+        "doneAll": "That's all for today. You did more than you planned. New episode tonight.",
+        "enoughLine": "Great. Rest up. I'll show you a new episode tonight.",
+        "proofLine": "AI checked the photo: all legit. +10 XP.",
+        "notHeard": "Didn't catch that. Say “yes”, “too lazy” or “enough”.",
+        "snoozeLine": "Deal, 5 minutes. Then just say “yes”.",
+        "wakeHint": "No need to open your eyes. Just say it.",
+        "futureLabel": "VOICE FROM THE FUTURE · YOUR VOICE",
+        "wakeFuture": "Hi, it's you one year from now. First step: {task}. Say “yes” or “too lazy”.",
+        "wakeNormal": "Good morning! First step: {task}. Yes or too lazy?",
+        "wakePlan": "Yesterday you said: “Tomorrow I {plan}”. Let's start simple: {task}. Yes?",
+        "letterZero": "Hi. I know today was a lazy one, and that's okay.\nIt all started with one sip of water.\nTomorrow, just do one tiny thing.",
+        "letterDone": "Hi. Today you did {n} steps, even though you wanted to stay in bed.\nDays like this are what I'm made of. Thank you.",
+        "episodeZeroTitle": "A break between battles",
+        "episodeZeroText": "Today the hero rested. But the best seasons start with a pause. New episode tomorrow.",
+        "episodeTitle": "Tiny steps",
+        "episodeWinTitle": "Hero vs. Laziness",
+        "episodeText": "The hero bargained with laziness {no} time(s), and in the end {n} steps changed the day.",
+        "kickText": "Come on, I just got up too. It's easier together.",
+        "duelFriend": "Max",
+        "duelRule": "The loser gets a funny profile photo from the winner for a day.",
+        "stakePromise": "Tomorrow I get up at 7:30 and do 1 step",
+        "arText": "Point your camera at the bed, and your Sloth will appear on the blanket.",
+        "season": "SEASON 1"
+      },
+      "ui": {
+        "moods": [
+          "Fresh",
+          "Okay",
+          "Zombie"
+        ],
+        "sleeps": [
+          "9 h",
+          "7 h",
+          "5 h"
+        ],
+        "bossOfDay": "Boss of the day",
+        "combo": "Combo",
+        "defeated": "Defeated!",
+        "radarLabel": "Laziness radar · how long you slept",
+        "radarToast": "Laziness radar: easy mode on",
+        "chain": "Chain: {after} → this step",
+        "no": "Nah, too lazy",
+        "yes": "Ok, doing it",
+        "panic": "I'm SUPER lazy (10 seconds)",
+        "panicSaid": "I'm SUPER lazy",
+        "proof": "Photo proof for AI (+{xp} XP)",
+        "photo": "[photo]",
+        "enough": "Enough",
+        "enoughSaid": "That's enough for today",
+        "more": "One more",
+        "moreSaid": "Let's do one more",
+        "restart": "Restart the morning",
+        "snoozeSaid": "5 more minutes",
+        "fallbackStep": "One tiny step",
+        "yourPet": "Your companion",
+        "mood": "Mood",
+        "petMoods": [
+          "sleepy",
+          "pleased",
+          "happy"
+        ],
+        "found": "found {a} of {b}",
+        "ar": "See it in your room (AR)",
+        "collection": "Collection. Gifts drop after your steps",
+        "locked": "Locked",
+        "widget": "Lock screen widget",
+        "widgetDone": "Step done. One more?",
+        "widgetRest": "All done for today",
+        "done": "Done",
+        "doneFromWidget": "Done (from widget)",
+        "widgetToast": "Counted from the lock screen",
+        "noStep": "No active step",
+        "clubTitle": "Lazy club",
+        "roomNow": "Quiet room · {n} here now",
+        "leaveRoom": "Leave the room",
+        "joinRoom": "Sit together for {n} minutes",
+        "roomReward": "{n} minutes together! +{xp} XP",
+        "me": "Me",
+        "you": "You",
+        "duelTitle": "Lazy duel · first to 3 steps",
+        "duelWin": "You won! {friend} gets a funny profile photo from you for a day.",
+        "sendKick": "Send a nudge: {friend}",
+        "kickSent": "Nudge sent",
+        "strangerKick": "A NUDGE FROM A STRANGER",
+        "listenVoice": "Play voice message",
+        "episodeBadge": "TODAY'S EPISODE",
+        "listen": "Listen",
+        "share": "Share",
+        "steps": "steps",
+        "trades": "bargains",
+        "forGood": "for good",
+        "letterLabel": "A LETTER FROM YOU, ONE YEAR LATER",
+        "readAloud": "Read aloud",
+        "tomorrow": "Tomorrow I…",
+        "tomorrowHint": "One sentence before bed. In the morning {app} will remind you in your own words.",
+        "tomorrowPlaceholder": "go for a 10-minute walk",
+        "save": "Save",
+        "writeOne": "Write one sentence",
+        "saved": "Saved: “{plan}”",
+        "planSaved": "I'll remind you in your own words",
+        "featuresTitle": "Features",
+        "featuresHint": "Turn any feature on or off.",
+        "language": "Language",
+        "stakeLabel": "Stake: “{promise}”",
+        "stakeTarget": "If I fail, the money goes:",
+        "stakePlace": "Stake {n} ₴",
+        "stakePlaced": "Stake accepted · {n} ₴",
+        "stakeToast": "Stake accepted",
+        "stakeNote": "[Real payments will come later, after a legal review.]",
+        "shopTitle": "Trade XP for partner perks · you have {xp} XP",
+        "received": " · claimed",
+        "exchange": "Trade",
+        "bought": "Traded: {name}",
+        "contentFrom": "Content: {src}",
+        "srcServer": "from admin",
+        "srcCache": "saved",
+        "srcDefault": "default",
+        "wakeTitle": "WAKE-UP",
+        "skip": "Skip",
+        "speak": "Speak",
+        "wakeYes": "“Yes”",
+        "wakeNo": "“Too lazy”",
+        "wakeSnooze": "“5 more min”",
+        "listening": "Listening…",
+        "heard": "Heard: “{t}”",
+        "plan": "Plan: {plan}",
+        "wakeScreen": "Wake-up screen",
+        "level": "Level",
+        "voiceControl": "Voice control",
+        "close": "Close",
+        "voiceTitle": "Voice commands",
+        "voiceRetry": "Couldn't hear you. Allow the microphone or tap a phrase.",
+        "voiceNoStt": "The microphone isn't available in this version (needs a custom build). Tapping a phrase works the same as saying it.",
+        "arTitle": "AR mode",
+        "arSoon": "[Coming in the next version.]"
+      },
+      "tasks": [
+        {
+          "after": "right after the alarm",
+          "ladder": [
+            "Drink a glass of water",
+            "Half a glass of water",
+            "At least one sip of water"
+          ]
+        },
+        {
+          "after": "after water",
+          "ladder": [
+            "20-minute workout",
+            "5-minute workout",
+            "10 squats",
+            "Stretch twice without getting out of bed"
+          ]
+        },
+        {
+          "after": "after morning coffee",
+          "ladder": [
+            "Sort your email for 15 minutes",
+            "Reply to 1 email",
+            "Just open your inbox and look"
+          ]
+        }
+      ],
+      "bossName": "Laziness",
+      "items": {
+        "glasses": "Sunglasses",
+        "phones": "Headphones",
+        "hammock": "Hammock",
+        "cup": "Cocoa",
+        "lights": "Fairy lights",
+        "pillow": "Pillow"
+      },
+      "shop": {
+        "coffee": {
+          "name": "Coffee −20%",
+          "partner": "[partner café]"
+        },
+        "gym": {
+          "name": "Gym session",
+          "partner": "[partner gym]"
+        },
+        "skin": {
+          "name": "Rare Sloth outfit",
+          "partner": "Sloth"
+        }
+      },
+      "clubPeople": [
+        {
+          "initials": "OK",
+          "doing": "Olya is tidying up"
+        },
+        {
+          "initials": "MT",
+          "doing": "Max is writing a thesis"
+        },
+        {
+          "initials": "AN",
+          "doing": "Andriy is sorting email"
+        },
+        {
+          "initials": "DS",
+          "doing": "Dana is working out"
+        }
+      ],
+      "stakeTargets": [
+        "To a friend who'll laugh at me",
+        "To charity",
+        "Locked in a piggy bank for a month"
+      ],
+      "features": {
+        "wake": {
+          "title": "Voice wake-up",
+          "desc": "The app starts with a voice alarm"
+        },
+        "tts": {
+          "title": "Bot voice",
+          "desc": "Sloth reads its replies out loud"
+        },
+        "voice": {
+          "title": "Voice control",
+          "desc": "Microphone button on every screen"
+        },
+        "future": {
+          "title": "Voice from the future",
+          "desc": "The bot speaks as you, one year from now"
+        },
+        "chain": {
+          "title": "Habit chains",
+          "desc": "New steps attach to things you already do"
+        },
+        "panic": {
+          "title": "Panic button",
+          "desc": "The tiniest step, 10 seconds"
+        },
+        "radar": {
+          "title": "Laziness radar",
+          "desc": "Easy mode after a bad night"
+        },
+        "proof": {
+          "title": "AI photo proof",
+          "desc": "Snap the result and get a bonus"
+        },
+        "boss": {
+          "title": "Boss of the day",
+          "desc": "Every step hits Laziness"
+        },
+        "surprise": {
+          "title": "Surprises",
+          "desc": "Gifts after your steps"
+        },
+        "club": {
+          "title": "Lazy club",
+          "desc": "Quiet room, duels, nudges"
+        },
+        "series": {
+          "title": "Episode of the day",
+          "desc": "Your day as a TV episode"
+        },
+        "home": {
+          "title": "Smart home",
+          "desc": "Said “too lazy” — lights and music turn on"
+        },
+        "charity": {
+          "title": "Steps for good",
+          "desc": "Every step sends money to charity"
+        },
+        "shop": {
+          "title": "XP shop",
+          "desc": "Trade XP for partner perks"
+        },
+        "stake": {
+          "title": "Bet on yourself",
+          "desc": "Money on the line if you break your promise"
+        }
+      },
+      "commands": {
+        "club": "club|room|duel",
+        "join": "join|sit|start",
+        "pet": "sloth|pet|companion|collection|gift",
+        "series": "series|episode|evening|letter|summary",
+        "more": "settings|features|shop|language",
+        "proof": "photo|proof|picture",
+        "enough": "enough|done for today|that's it|stop",
+        "panic": "super|very lazy|panic|really lazy",
+        "no": "\\bno\\b|\\bnah\\b|nope|lazy|don't|later|less",
+        "yes": "yes|yeah|\\bok\\b|okay|sure|do it|let's|more|next|go"
+      },
+      "phrases": [
+        "yes",
+        "too lazy",
+        "super lazy",
+        "one more",
+        "enough",
+        "photo",
+        "club",
+        "episode",
+        "sloth"
+      ]
+    }
+  }
+}

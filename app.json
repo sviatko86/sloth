@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "Sloth",
+    "slug": "sloth",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#0E0F1A",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "app.sloth.motivation",
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "Sloth listens to your voice answers.",
+        "NSSpeechRecognitionUsageDescription": "To understand commands like “yes”, “too lazy” and “enough”."
+      }
+    },
+    "android": {
+      "package": "app.sloth.motivation",
+      "permissions": [
+        "RECORD_AUDIO"
+      ]
+    },
+    "plugins": [
+      "expo-font",
+      "expo-localization",
+      "expo-speech-recognition"
+    ]
+  }
+}

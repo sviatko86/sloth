@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sloth — адмінка</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0E0F1A;--sf:#171828;--bd:#2B2C45;--tx:#F4F2FF;--mu:#A9A6C4;--ac:#FF8A4C;--ai:#2A1206;--li:#B9A8FF;--gr:#7EE2A8;--rd:#FF7A7A}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--tx);font-family:Manrope,system-ui,sans-serif;font-size:15px}
+  a{color:var(--ac)}
+  .wrap{max-width:860px;margin:0 auto;padding:20px 16px 120px}
+  h1{font-family:Unbounded,sans-serif;font-size:24px;margin:0}
+  h2{font-family:Unbounded,sans-serif;font-size:16px;margin:0}
+  .top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+  .top .sp{flex:1}
+  .muted{color:var(--mu);font-size:13px}
+  .card{background:var(--sf);border:1px solid var(--bd);border-radius:18px;padding:16px;margin-bottom:12px}
+  details.sec{background:var(--sf);border:1px solid var(--bd);border-radius:18px;margin-bottom:12px}
+  details.sec>summary{cursor:pointer;padding:16px;list-style:none;display:flex;align-items:center;gap:10px}
+  details.sec>summary::-webkit-details-marker{display:none}
+  details.sec>summary:after{content:"+";margin-left:auto;color:var(--mu);font-size:20px}
+  details.sec[open]>summary:after{content:"–"}
+  .body{padding:0 16px 16px}
+  .field{display:flex;flex-direction:column;gap:6px;margin:10px 0}
+  .field>label{font-weight:800;font-size:13px;color:var(--mu)}
+  input[type=text],input[type=number],input[type=email],input[type=password],textarea{width:100%;background:var(--bg);color:var(--tx);border:1px solid var(--bd);border-radius:12px;padding:11px 12px;font:inherit}
+  textarea{min-height:84px;resize:vertical;line-height:1.45}
+  input:focus,textarea:focus{outline:2px solid var(--ac);outline-offset:1px}
+  .row{display:flex;gap:8px;align-items:center}
+  .row>input[type=text]{flex:1}
+  .color{display:flex;gap:8px;align-items:center}
+  .color input[type=color]{width:48px;height:44px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);padding:3px}
+  .obj{border:1px solid var(--bd);border-radius:14px;padding:4px 12px;margin:8px 0;background:#131423}
+  .objhead{display:flex;align-items:center;gap:6px;padding-top:8px}
+  .objhead b{flex:1;font-size:13px;color:var(--li)}
+  button{font:inherit;font-weight:800;cursor:pointer;border-radius:12px;min-height:44px;padding:0 16px;border:1px solid var(--bd);background:transparent;color:var(--tx)}
+  button.pri{background:var(--ac);color:var(--ai);border:none}
+  button.sm{min-height:36px;padding:0 10px;font-size:13px}
+  button.danger{color:var(--rd);border-color:#5a2b2b}
+  button:disabled{opacity:.5;cursor:default}
+  .switch{position:relative;width:52px;height:30px;flex:none}
+  .switch input{opacity:0;width:0;height:0}
+  .switch span{position:absolute;inset:0;background:#3A3B5C;border-radius:99px;transition:.2s}
+  .switch span:before{content:"";position:absolute;width:24px;height:24px;left:3px;top:3px;background:#fff;border-radius:99px;transition:.2s}
+  .switch input:checked+span{background:var(--ac)}
+  .switch input:checked+span:before{transform:translateX(22px)}
+  .switch input:focus-visible+span{outline:2px solid var(--li)}
+  .bool{display:flex;align-items:center;gap:12px;margin:10px 0}
+  .bool label{flex:1;font-weight:800;font-size:13px;color:var(--mu)}
+  .bar{position:fixed;left:0;right:0;bottom:0;background:#12131F;border-top:1px solid var(--bd);padding:12px 16px}
+  .bar .in{max-width:860px;margin:0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .bar .st{flex:1;font-size:13px;color:var(--mu);min-width:160px}
+  .hint{font-size:12px;color:var(--mu)}
+  .msg{padding:10px 12px;border-radius:12px;margin:10px 0;font-size:14px}
+  .msg.err{background:#3a1d1d;color:#FFB4B4}
+  .msg.ok{background:#16301f;color:var(--gr)}
+  .tabs{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+  .tabs button[aria-pressed=true]{background:var(--ac);color:var(--ai);border:none}
+  .hidden{display:none !important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <h1>Sloth · адмінка</h1>
+    <span class="sp"></span>
+    <span id="who" class="muted"></span>
+    <button id="logout" class="sm hidden" type="button">Вийти</button>
+  </div>
+
+  <div id="cfgwarn" class="msg err hidden">Адмінка ще не підключена до бази. Claude підставить адресу Supabase після створення проєкту.</div>
+
+  <section id="login" class="card hidden">
+    <h2>Вхід</h2>
+    <p class="muted">Увійди своєю поштою. Якщо акаунта ще немає — натисни «Зареєструватися», підтверди пошту, і Claude додасть тебе в адміни.</p>
+    <div class="field"><label for="em">Пошта</label><input id="em" type="email" autocomplete="email"></div>
+    <div class="field"><label for="pw">Пароль</label><input id="pw" type="password" autocomplete="current-password"></div>
+    <div class="row">
+      <button id="signin" class="pri" type="button">Увійти</button>
+      <button id="signup" type="button">Зареєструватися</button>
+    </div>
+    <div id="loginmsg"></div>
+  </section>
+
+  <section id="noadmin" class="card hidden">
+    <h2>Ти увійшов, але ще не адмін</h2>
+    <p class="muted">Напиши Claude: «додай мене в адміни Sloth». Потім онови цю сторінку.</p>
+  </section>
+
+  <section id="editor" class="hidden">
+    <div class="tabs" role="group" aria-label="Режим">
+      <button type="button" id="modeForm" aria-pressed="true">Зручний редактор</button>
+      <button type="button" id="modeJson" aria-pressed="false">Весь JSON</button>
+    </div>
+    <div id="form"></div>
+    <div id="jsonbox" class="card hidden">
+      <p class="hint">Тут можна змінити абсолютно все. Після правок натисни «Зберегти».</p>
+      <textarea id="json" style="min-height:60vh;font-family:ui-monospace,monospace;font-size:13px" aria-label="Конфігурація JSON"></textarea>
+    </div>
+  </section>
+</div>
+
+<div id="bar" class="bar hidden">
+  <div class="in">
+    <span id="status" class="st">Без змін</span>
+    <button id="reset" type="button" class="danger sm">Скинути до стандартних</button>
+    <button id="reload" type="button" class="sm">Відмінити зміни</button>
+    <button id="save" type="button" class="pri">Зберегти</button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = 'https://qfpzoybbcxeaewiuijtk.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_g9G90klFkJuWhZng594f1Q_h1hZTOfE';
+
+const LABELS = {
+  theme:'Кольори', tabs:'Назви вкладок', texts:'Тексти бота', tasks:'Завдання (драбинки торгу)', game:'Ігрові правила',
+  boss:'Бос дня', items:'Подарунки (колекція)', shop:'Магазин XP', club:'Лінивий клуб', stake:'Ставки', features:'Функції (вмикати/вимикати для всіх)',
+  bg:'Фон', surface:'Картки', border:'Рамки', text:'Текст', muted:'Другорядний текст', accent:'Акцент (кнопки)', accentInk:'Текст на кнопках', lilac:'Додатковий (бузковий)', green:'Успіх (зелений)',
+  morning:'Ранок', pet:'Лінивець', club_tab:'Клуб', series:'Серіал', more:'Функції',
+  appName:'Назва застосунку', tagline:'Підзаголовок', helloNormal:'Привітання (звичайний день)', helloTired:'Привітання (важкий день)', noLines:'Відповіді на «ні, ліньки»',
+  restLine:'Коли відмовився від усього', panicLine:'Кнопка паніки', homeLine:'Розумний дім', yesLine:'Після «так»', comboSuffix:'Позначка комбо', surpriseItem:'Сюрприз-подарунок',
+  surpriseXp:'Сюрприз-бонус', bossWin:'Перемога над босом', charityLine:'Кроки на добро', askMore:'Запит на ще крок', nextLine:'Наступне завдання', doneAll:'Всі завдання виконано',
+  enoughLine:'Коли «досить»', proofLine:'Фото-доказ прийнято', notHeard:'Не розчув голос', snoozeLine:'«Ще 5 хвилин»', wakeHint:'Підказка на екрані пробудження',
+  futureLabel:'Підпис «голос із майбутнього»', wakeFuture:'Фраза пробудження (голос із майбутнього)', wakeNormal:'Фраза пробудження (звичайна)', wakePlan:'Фраза пробудження з планом',
+  letterZero:'Вечірній лист (0 кроків)', letterDone:'Вечірній лист (були кроки)', episodeZeroTitle:'Серія: назва (0 кроків)', episodeZeroText:'Серія: текст (0 кроків)',
+  episodeTitle:'Серія: назва', episodeWinTitle:'Серія: назва (бос переможений)', episodeText:'Серія: текст', kickText:'Пинок від незнайомця', duelFriend:'Ім’я суперника в дуелі',
+  duelRule:'Правило дуелі', stakePromise:'Обіцянка для ставки', arText:'Текст AR-режиму', season:'Сезон',
+  after:'Ланцюжок: після чого', ladder:'Кроки від найбільшого до найменшого', xpByRung:'XP за кроки (від великого до малого)', xpPerLevel:'XP на рівень', comboFrom:'Комбо з кроку №',
+  comboMultiplier:'Множник комбо', surpriseChance:'Шанс подарунка (0–1)', proofXp:'XP за фото-доказ', charityPerStep:'Гривень на добро за крок',
+  name:'Назва', hp:'Здоров’я', winXp:'XP за перемогу', dmgBonus:'Додаткова шкода', id:'Код (латиницею, без пробілів)', cost:'Ціна в XP', partner:'Партнер',
+  minutes:'Хвилин у кімнаті', rewardXp:'XP за кімнату', people:'Учасники (демо)', initials:'Ініціали', doing:'Що робить', amounts:'Суми ставок (₴)', targets:'Куди йдуть гроші',
+  enabled:'Доступна в застосунку', default:'Увімкнена за замовчуванням', title:'Назва', desc:'Опис',
+  wake:'Голосове пробудження', tts:'Голос бота', voice:'Голосове керування', future:'Голос із майбутнього', chain:'Ланцюжки звичок', panic:'Кнопка паніки', radar:'Радар ліні',
+  proof:'Фото-доказ з AI', surprise:'Сюрпризи', home:'Розумний дім', charity:'Кроки на добро',
+  defaultLanguage:'Мова за замовчуванням (uk або en)', languages:'Тексти: українська та англійська', uk:'Українська версія', en:'English version',
+  voiceLang:'Мова голосу (uk-UA / en-US)', ui:'Написи на кнопках і екранах', bossName:'Ім’я боса', clubPeople:'Учасники клубу (демо)', stakeTargets:'Куди йдуть гроші (ставка)',
+  commands:'Голосові команди (слова-ключі через |)', phrases:'Фрази-підказки для голосу', join:'Сісти в кімнату', yes:'Так', no:'Ні', enough:'Досить'
+};
+const LANG_LABELS = { features:'Назви й описи функцій', items:'Назви подарунків (за кодом)', shop:'Назви товарів магазину (за кодом)', tasks:'Завдання (драбинки торгу)', tabs:'Назви вкладок', texts:'Тексти бота' };
+const HINTS = {
+  languages:'Кожна мова має повний набір текстів. У фігурних дужках — підстановки ({task}, {xp}, {n}, {plan}…), не видаляй їх. Новий подарунок чи товар: додай код у розділі «Подарунки»/«Магазин», а назву — тут, в обох мовах, під тим самим кодом.',
+  items:'Тут лише коди подарунків. Назви кожною мовою — у розділі «Тексти: українська та англійська».',
+  shop:'Тут коди й ціни. Назви й партнери кожною мовою — у розділі «Тексти».',
+  features:'«Доступна в застосунку» вимикає функцію для всіх. «Увімкнена за замовчуванням» — чи ввімкнена вона в нового користувача.'
+};
+
+let sb = null, cfg = null, saved = null, defaults = null, dirty = false;
+const $ = (id) => document.getElementById(id);
+const show = (id, on) => $(id).classList.toggle('hidden', !on);
+const label = (k, path) => (path === 'tabs' && k === 'club') ? LABELS.club_tab : ((path === 'uk' || path === 'en') && LANG_LABELS[k]) ? LANG_LABELS[k] : (LABELS[k] || k);
+const isHex = (v) => typeof v === 'string' && /^#[0-9a-fA-F]{6}$/.test(v);
+const clone = (v) => JSON.parse(JSON.stringify(v));
+
+function setDirty(d) {
+  dirty = d;
+  $('status').textContent = d ? 'Є незбережені зміни' : 'Без змін';
+  $('save').disabled = !d;
+}
+function msg(el, text, ok) { $(el).innerHTML = text ? '<div class="msg ' + (ok ? 'ok' : 'err') + '"></div>' : ''; if (text) $(el).firstChild.textContent = text; }
+
+function blankLike(v) {
+  if (Array.isArray(v)) return [];
+  if (v && typeof v === 'object') { const o = {}; Object.keys(v).forEach(k => o[k] = blankLike(v[k])); return o; }
+  if (typeof v === 'number') return 0;
+  if (typeof v === 'boolean') return false;
+  return '';
+}
+
+let uid = 0;
+function node(value, onChange, key, path) {
+  const id = 'f' + (++uid);
+  if (typeof value === 'boolean') {
+    const w = document.createElement('div'); w.className = 'bool';
+    w.innerHTML = '<label for="' + id + '"></label><span class="switch"><input type="checkbox" id="' + id + '"><span></span></span>';
+    w.querySelector('label').textContent = label(key, path);
+    const cb = w.querySelector('input'); cb.checked = value;
+    cb.onchange = () => onChange(cb.checked);
+    return w;
+  }
+  if (typeof value === 'number' || typeof value === 'string') {
+    const w = document.createElement('div'); w.className = 'field';
+    if (key != null) { const l = document.createElement('label'); l.htmlFor = id; l.textContent = label(key, path); w.appendChild(l); }
+    if (isHex(value)) {
+      const c = document.createElement('div'); c.className = 'color';
+      c.innerHTML = '<input type="color" aria-label="Вибір кольору"><input type="text" id="' + id + '">';
+      const [pick, txt] = c.querySelectorAll('input');
+      pick.value = value; txt.value = value;
+      pick.oninput = () => { txt.value = pick.value; onChange(pick.value); };
+      txt.oninput = () => { if (isHex(txt.value)) pick.value = txt.value; onChange(txt.value); };
+      w.appendChild(c); return w;
+    }
+    let inp;
+    if (typeof value === 'string' && (value.length > 60 || value.indexOf('\n') >= 0)) { inp = document.createElement('textarea'); }
+    else { inp = document.createElement('input'); inp.type = typeof value === 'number' ? 'number' : 'text'; if (typeof value === 'number') inp.step = 'any'; }
+    inp.id = id; inp.value = value;
+    if (key == null) inp.setAttribute('aria-label', 'Значення');
+    inp.oninput = () => onChange(typeof value === 'number' ? (inp.value === '' ? 0 : Number(inp.value)) : inp.value);
+    w.appendChild(inp); return w;
+  }
+  if (Array.isArray(value)) {
+    const w = document.createElement('div'); w.className = 'field';
+    if (key != null) { const l = document.createElement('label'); l.textContent = label(key, path); w.appendChild(l); }
+    const list = document.createElement('div'); w.appendChild(list);
+    const render = () => {
+      list.innerHTML = '';
+      value.forEach((item, i) => {
+        const set = (v) => { value[i] = v; onChange(value); };
+        const tools = document.createElement('span'); tools.className = 'row';
+        const up = btn('↑', 'Вище', () => { if (i > 0) { [value[i - 1], value[i]] = [value[i], value[i - 1]]; onChange(value); render(); } });
+        const del = btn('Видалити', 'Видалити', () => { value.splice(i, 1); onChange(value); render(); }, 'danger');
+        tools.append(up, del);
+        if (item && typeof item === 'object' && !Array.isArray(item)) {
+          const box = document.createElement('div'); box.className = 'obj';
+          const head = document.createElement('div'); head.className = 'objhead';
+          const b = document.createElement('b'); b.textContent = '№' + (i + 1) + (item.name ? ' · ' + item.name : item.after ? ' · ' + item.after : '');
+          head.append(b, tools); box.appendChild(head);
+          Object.keys(item).forEach(k => box.appendChild(node(item[k], (v) => { item[k] = v; onChange(value); }, k, key)));
+          list.appendChild(box);
+        } else if (Array.isArray(item)) {
+          list.appendChild(node(item, set, null, key));
+        } else {
+          const r = document.createElement('div'); r.className = 'row';
+          const f = node(item, set, null, key); f.style.flex = '1'; f.style.margin = '4px 0';
+          r.append(f, tools); list.appendChild(r);
+        }
+      });
+      const add = btn('+ Додати', 'Додати', () => {
+        const proto = value.length ? blankLike(value[0]) : '';
+        if (proto && typeof proto === 'object' && 'id' in proto) proto.id = 'item' + Date.now().toString(36);
+        value.push(proto); onChange(value); render();
+      });
+      add.style.marginTop = '6px'; list.appendChild(add);
+    };
+    render(); return w;
+  }
+  // об'єкт
+  const w = document.createElement('div');
+  if (key != null && path != null) { w.className = 'obj'; const h = document.createElement('div'); h.className = 'objhead'; const b = document.createElement('b'); b.textContent = label(key, path); h.appendChild(b); w.appendChild(h); }
+  Object.keys(value).forEach(k => w.appendChild(node(value[k], (v) => { value[k] = v; onChange(value); }, k, key)));
+  return w;
+}
+function btn(text, aria, fn, cls) { const b = document.createElement('button'); b.type = 'button'; b.className = 'sm ' + (cls || ''); b.textContent = text; b.setAttribute('aria-label', aria); b.onclick = fn; return b; }
+
+function renderForm() {
+  const f = $('form'); f.innerHTML = ''; uid = 0;
+  Object.keys(cfg).forEach((sec, i) => {
+    const d = document.createElement('details'); d.className = 'sec'; if (i === 0) d.open = false;
+    const s = document.createElement('summary'); const h = document.createElement('h2'); h.textContent = label(sec); s.appendChild(h); d.appendChild(s);
+    const body = document.createElement('div'); body.className = 'body';
+    if (HINTS[sec]) { const p = document.createElement('p'); p.className = 'hint'; p.textContent = HINTS[sec]; body.appendChild(p); }
+    body.appendChild(node(cfg[sec], (v) => { cfg[sec] = v; setDirty(true); }, null, null));
+    d.appendChild(body); f.appendChild(d);
+  });
+  $('json').value = JSON.stringify(cfg, null, 2);
+}
+
+function mergeDefaults(base, over) {
+  if (!over || typeof over !== 'object' || Array.isArray(over)) return clone(base);
+  const out = clone(base);
+  Object.keys(over).forEach(k => {
+    out[k] = (base[k] && typeof base[k] === 'object' && !Array.isArray(base[k]) && over[k] && typeof over[k] === 'object' && !Array.isArray(over[k])) ? mergeDefaults(base[k], over[k]) : over[k];
+  });
+  return out;
+}
+
+async function loadConfig() {
+  const { data, error } = await sb.from('app_config').select('data').eq('id', 'main').maybeSingle();
+  if (error) { $('status').textContent = 'Помилка завантаження: ' + error.message; return; }
+  saved = mergeDefaults(defaults, data ? data.data : {});
+  cfg = clone(saved); renderForm(); setDirty(false);
+}
+
+async function save() {
+  if ($('modeJson').getAttribute('aria-pressed') === 'true') {
+    try { cfg = JSON.parse($('json').value); } catch (e) { $('status').textContent = 'Помилка в JSON: ' + e.message; return; }
+  }
+  $('save').disabled = true; $('status').textContent = 'Зберігаю…';
+  const { error } = await sb.from('app_config').upsert({ id: 'main', data: cfg });
+  if (error) { $('status').textContent = 'Не збереглося: ' + error.message; $('save').disabled = false; return; }
+  saved = clone(cfg); setDirty(false); renderForm();
+  $('status').textContent = 'Збережено. Застосунок оновиться при наступному відкритті.';
+}
+
+async function route() {
+  const { data: { session } } = await sb.auth.getSession();
+  show('logout', !!session); $('who').textContent = session ? session.user.email : '';
+  if (!session) { show('login', true); show('editor', false); show('noadmin', false); show('bar', false); return; }
+  show('login', false);
+  const { data: adm } = await sb.from('admins').select('user_id').eq('user_id', session.user.id).maybeSingle();
+  if (!adm) { show('noadmin', true); show('editor', false); show('bar', false); return; }
+  show('noadmin', false); show('editor', true); show('bar', true);
+  await loadConfig();
+}
+
+async function init() {
+  try { defaults = await (await fetch('config.default.json', { cache: 'no-store' })).json(); } catch (e) { defaults = {}; }
+  if (!SUPABASE_URL.startsWith('https://') || !window.supabase) { show('cfgwarn', true); return; }
+  sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  sb.auth.onAuthStateChange(() => route());
+
+  $('signin').onclick = async () => {
+    msg('loginmsg', '');
+    const { error } = await sb.auth.signInWithPassword({ email: $('em').value.trim(), password: $('pw').value });
+    if (error) msg('loginmsg', 'Не вдалося увійти: ' + error.message);
+  };
+  $('signup').onclick = async () => {
+    msg('loginmsg', '');
+    const { error } = await sb.auth.signUp({ email: $('em').value.trim(), password: $('pw').value, options: { emailRedirectTo: location.href } });
+    if (error) msg('loginmsg', 'Помилка: ' + error.message); else msg('loginmsg', 'Готово! Підтверди пошту листом, потім увійди.', true);
+  };
+  $('logout').onclick = () => sb.auth.signOut();
+  $('save').onclick = save;
+  $('reload').onclick = () => { if (!dirty || confirmLeave()) { cfg = clone(saved); renderForm(); setDirty(false); } };
+  $('reset').onclick = () => { cfg = clone(defaults); renderForm(); setDirty(true); $('status').textContent = 'Стандартні значення підставлено. Натисни «Зберегти», щоб застосувати.'; };
+  $('json').oninput = () => setDirty(true);
+  $('modeForm').onclick = () => {
+    if ($('modeJson').getAttribute('aria-pressed') === 'true') {
+      try { cfg = JSON.parse($('json').value); } catch (e) { $('status').textContent = 'Спочатку виправ помилку в JSON: ' + e.message; return; }
+      renderForm();
+    }
+    $('modeForm').setAttribute('aria-pressed', 'true'); $('modeJson').setAttribute('aria-pressed', 'false'); show('form', true); show('jsonbox', false);
+  };
+  $('modeJson').onclick = () => {
+    $('json').value = JSON.stringify(cfg, null, 2);
+    $('modeJson').setAttribute('aria-pressed', 'true'); $('modeForm').setAttribute('aria-pressed', 'false'); show('form', false); show('jsonbox', true);
+  };
+  window.addEventListener('beforeunload', (e) => { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
+  setDirty(false);
+  route();
+}
+function confirmLeave() { return true; }
+init();
+</script>
+</body>
+</html>

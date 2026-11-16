@@ -1,0 +1,29 @@
+{
+  "name": "sloth",
+  "version": "0.1.0",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "fix": "expo install --fix"
+  },
+  "dependencies": {
+    "@expo-google-fonts/manrope": "^0.4.1",
+    "@expo-google-fonts/unbounded": "^0.4.1",
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "@supabase/supabase-js": "^2.45.0",
+    "expo": "~54.0.0",
+    "expo-font": "~14.0.8",
+    "expo-localization": "~17.0.7",
+    "expo-speech": "~14.0.7",
+    "expo-speech-recognition": "^2.1.0",
+    "expo-status-bar": "~3.0.8",
+    "react": "19.1.0",
+    "react-native": "0.81.4",
+    "react-native-safe-area-context": "~5.6.0",
+    "react-native-svg": "15.12.1",
+    "react-native-url-polyfill": "^2.0.0"
+  }
+}
